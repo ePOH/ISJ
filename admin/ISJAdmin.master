@@ -1,0 +1,61 @@
+﻿<%@ Master Language="VB" CodeFile="ISJAdmin.master.vb" Inherits="admin_ISJAdmin" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+   <title></title>
+    <link href="../Scripts/index.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="../favicon.ico" type="image/x-icon"/>
+    <script type="text/javascript" src="../Scripts/jQuery_minified.js"></script>
+    <script type="text/javascript" src="../Scripts/jQuery_loginForm.js"></script>
+    <script type="text/javascript" src="../Scripts/jQuery_logoutForm.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'/>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+     <form id="form1" runat="server">
+   <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+     </asp:ToolkitScriptManager>
+   
+    <div class="header">
+            <div class="banner1">
+            <div class="banner">
+              <div class="slogan"><asp:Label ID="lb_f_name" runat="server"></asp:Label>&#39;s ADMIN PANEL</div>
+            </div>
+          </div>
+  
+          <div class="banner2">
+            <div class="nav">
+              <a href="add_user.aspx">USERS</a>
+               <a href="Recent_update_chooser.aspx">RECENT UPDATES </a>
+              <a href="insert_news_item.aspx">NEWS</a>
+              <a href="modify_features.aspx">FEATURES</a>
+              <a href="add_project.aspx">PROJECTS/BUSINESSES</a>
+              <a href="reports.aspx">REPORTS</a>
+              <a href="pages.aspx">PAGES</a>
+              <a href="logout.aspx">LOGOUT</a>
+              </div>
+          </div>
+        </div>
+      
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+
+        <div class="footer">
+          <div class="banner2">
+            <div class="main">
+              <div class="hand">&nbsp;</div>
+              <div class="copyright">
+                The impetus to succeed and support comes from the same place...Inside © 2009 - 2012 JNF. All rights reserved.
+              </div>
+            </div>
+          </div>
+        </div>
+    </form>
+</body>
+</html>

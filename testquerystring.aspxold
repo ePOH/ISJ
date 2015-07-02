@@ -1,0 +1,54 @@
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage2.master" AutoEventWireup="false" CodeFile="testquerystring.aspx.vb" Inherits="testquerystring" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <br />
+        <br />
+            <br />
+                <br />
+                <div class="sub-header">
+  <div class="main">
+    <div class="section">
+       <asp:Literal ID="lblerrormessage" runat="server"></asp:Literal> 
+       <asp:Literal ID="lblDonorvid" runat="server"></asp:Literal>
+    <br />
+
+    <asp:Literal ID="lblemail" runat="server"></asp:Literal>
+        <br />
+            <br />
+                <br />
+                    <asp:TextBox ID="TextBox1" runat="server" BorderWidth="1px"></asp:TextBox>
+                    <br />
+
+                        <br />    
+    </div>
+  </div>
+</div>
+
+<asp:TextBox ID="yourEmail" runat="server" BorderWidth="1px"></asp:TextBox>      <br />
+                    <asp:TextBox ID="yourPassword" runat="server" BorderWidth="1px"></asp:TextBox>      <br />
+                    <asp:Button ID="Button1" runat="server" Text="Button" />      <br />
+                    <br />
+
+<asp:Image ID="IMG_Project_Give_Success" runat="server" Width="250" 
+                    Height="172" AlternateText="Project Image" />
+                <asp:SlideShowExtender ID="SlideShowExtender1" runat="server" TargetControlID="IMG_Project_Give_Success"
+                  SlideShowServiceMethod="GetSlides" AutoPlay="true" Loop="true" ContextKey="12"  UseContextKey="true" >
+                </asp:SlideShowExtender>
+                <div>
+ 
+            <asp:Label ID="lblDesc" runat="server" Text=""></asp:Label><br />
+ 
+            <asp:Button ID="btnPrev" runat="server" Text="Previous" />
+ 
+            <asp:Button ID="btnPlay" runat="server" Text="" />
+ 
+            <asp:Button ID="btnNext" runat="server" Text="Next" />
+ 
+        </div>
+    
+</asp:Content>
+

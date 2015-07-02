@@ -1,0 +1,167 @@
+﻿Imports CuteEditor
+Imports System.IO
+Imports ISJhelper
+Imports System.Data
+Imports System.Data.SqlClient
+Partial Class _Default
+    Inherits System.Web.UI.Page
+	
+	   Protected Sub Page_Load(sender As Object, e As System.EventArgs) Handles Me.Load
+
+
+        ' '''''''
+        'MyData.ImagePath = Server.MapPath("~/Images")
+        'Dim strUrl As String = Request.Url.ToString
+
+        'MyData.Url = strUrl.Substring(0, strUrl.LastIndexOf("/")) & "/Images"
+
+
+        '''''''''''''
+        'Dim dv As New Data.DataView
+        'dv = SQL_DS_Projects.Select(DataSourceSelectArguments.Empty)
+        'lb_project_name.Text = UCase(dv.Table.Rows(0)("Project_Short_Name"))
+        ''lb_project_synopsys.Text = Left(dv.Table.Rows(0)("Project_Synopsys"), 33) & "....."
+        'lb_project_Status.Text = If(dv.Table.Rows(0)("Project_Status") = 1, "ACTIVE", "SUCCESS")
+        'lb_project_about.Text = Left(CuteEditor.EditorUtility.ExtractPlainTextOutOfHtml(dv.Table.Rows(0)("Project_Needs")), 430)
+        'SlideShowExtender2.ContextKey = dv.Table.Rows(0)("Project_ID")
+        'IMG_Project_Give.ImageUrl = dv.Table.Rows(0)("Project_Image")
+        'HL_IMG_Project_Give.NavigateUrl = "project_details.aspx?pid=" & dv.Table.Rows(0)("Project_ID")
+
+        'Dim dv1 As New Data.DataView
+        'dv1 = SQL_DS_Projects.Select(DataSourceSelectArguments.Empty)
+        'lb_project_name_success.Text = UCase(dv1.Table.Rows(1)("Project_Short_Name"))
+        ''lb_project_synopsys_success.Text = Left(dv1.Table.Rows(1)("Project_Synopsys"), 33) & "....."
+        'lb_project_Status1_success.Text = If(dv1.Table.Rows(1)("Project_Status") = 1, "ACTIVE", "SUCCESS")
+        'SlideShowExtender1.ContextKey = dv.Table.Rows(1)("Project_ID")
+        ''lb_project_about_success.Text = Left(dv1.Table.Rows(1)("Project_Needs"), 430)
+        'lb_project_about_success.Text = Left(CuteEditor.EditorUtility.ExtractPlainTextOutOfHtml(dv1.Table.Rows(1)("Project_Needs")), 430)
+        'IMG_Project_Give_Success.ImageUrl = dv1.Table.Rows(1)("Project_Image")
+        'HL_IMG_Project_Give_Success.NavigateUrl = "project_details.aspx?pid=" & dv1.Table.Rows(1)("Project_ID")
+
+        'Dim dv2 As New Data.DataView
+        'dv2 = SQL_DS_Projects.Select(DataSourceSelectArguments.Empty)
+        'lb_business_name.Text = UCase(dv2.Table.Rows(2)("Project_Short_Name"))
+        ''lb_business_synopsys.Text = Left(dv2.Table.Rows(2)("Project_Synopsys"), 33) & "....."
+        'lb_business_Status.Text = If(dv2.Table.Rows(2)("Project_Status") = 1, "ACTIVE", "SUCCESS")
+        'SlideShowExtender4.ContextKey = dv2.Table.Rows(2)("Project_ID")
+        'lb_business_about.Text = Left(CuteEditor.EditorUtility.ExtractPlainTextOutOfHtml(dv2.Table.Rows(2)("Project_Needs")), 430)
+        'IMG_Business_Lend.ImageUrl = dv2.Table.Rows(2)("Project_Image")
+        'HL_IMG_Business_Lend.NavigateUrl = "business_details.aspx?pid=" & dv2.Table.Rows(2)("Project_ID")
+
+        'Dim dv3 As New Data.DataView
+        'dv3 = SQL_DS_Projects.Select(DataSourceSelectArguments.Empty)
+        'lb_business_name_success.Text = UCase(dv3.Table.Rows(3)("Project_Short_Name"))
+        ''lb_business_synopsys_success.Text = Left(dv3.Table.Rows(3)("Project_Synopsys"), 33) & "....."
+        'lb_business_Status_success.Text = If(dv2.Table.Rows(3)("Project_Status") = 1, "ACTIVE", "SUCCESS")
+        'SlideShowExtender3.ContextKey = dv3.Table.Rows(3)("Project_ID")
+        'lb_business_about_success.Text = Left(CuteEditor.EditorUtility.ExtractPlainTextOutOfHtml(dv3.Table.Rows(3)("Project_Needs")), 430)
+        'IMG_Business_Lend_Success.ImageUrl = dv3.Table.Rows(3)("Project_Image")
+        'HL_IMG_Business_Lend_Success.NavigateUrl = "business_details.aspx?pid=" & dv3.Table.Rows(3)("Project_ID")
+
+    End Sub
+
+
+    <System.Web.Services.WebMethod(), System.Web.Script.Services.ScriptMethod()> _
+    Public Shared Function GetSlides(ByVal contextKey As String) As AjaxControlToolkit.Slide()
+
+        ''  MsgBox(contextKey)
+
+        Dim ProjectId As String = contextKey
+
+        Dim dv As New Data.DataView
+        dv = getmyimage(ProjectId).Tables(0).DefaultView
+
+        Dim imgSlide(4) As AjaxControlToolkit.Slide
+
+
+        imgSlide(0) = New AjaxControlToolkit.Slide(dv.Table.Rows(0)("Project_Image"), "", "")
+
+        For i = 1 To 3
+            If Not String.IsNullOrEmpty(dv.Table.Rows(0)("Project_Image" & i).ToString) Then
+                imgSlide(i) = New AjaxControlToolkit.Slide(dv.Table.Rows(0)("Project_Image" & i), "", "")
+            End If
+        Next
+        'imgSlide(1) = New AjaxControlToolkit.Slide(dv.Table.Rows(1)("Project_Image1"), "", "")
+        'imgSlide(2) = New AjaxControlToolkit.Slide(dv.Table.Rows(2)("Project_Image2"), "", "")
+        'imgSlide(3) = New AjaxControlToolkit.Slide(dv.Table.Rows(3)("Project_Image3"), "", "")
+
+        Return (imgSlide)
+
+    End Function
+
+    Public Shared Function getmyimage(ByVal ProjectId As Integer) As DataSet
+        '' MsgBox(ProjectId)
+        Dim myerror As String = ""
+        Dim mydataset As New DataSet
+        '' mydataset = Nothing
+        Try
+            Dim paramProjectId As Data.SqlClient.SqlParameter
+            paramProjectId = New Data.SqlClient.SqlParameter("@ProjectId", SqlDbType.Int)
+            paramProjectId.Value = ProjectId
+
+            Dim strConn As String = ConfigurationManager.ConnectionStrings("ConnISJ").ConnectionString
+            Dim objConn As New SqlConnection(strConn)
+            ''Dim strSQL As String = "SELECT Donor_ID, Donor_First_Name, Donor_Last_Name, Donor_Email FROM Donor_Master_File WHERE (Donor_Email = '" & yourEmail.Text & "')"
+            Dim strSQL As String = "SELECT Project_Data_File.Project_Image,Project_Image1,Project_Image2,Project_Image3 FROM Project_Data_File INNER JOIN Home_Page_Data_File ON Project_Data_File.Project_ID = Home_Page_Data_File.Project_ID WHERE (Project_Data_File.Project_ID = @ProjectId) ORDER BY Project_Data_File.Project_Type, Project_Data_File.Project_Status "
+            objConn.Open()
+            Dim objAdpt As New SqlDataAdapter()
+
+            Dim objComm As New Data.SqlClient.SqlCommand(strSQL, objConn)
+            objComm.Parameters.Add(paramProjectId)
+
+            objAdpt.SelectCommand = objComm
+            objAdpt.SelectCommand.CommandType = CommandType.Text
+            '' objComm.Parameters.Add(paramEmail)
+
+            objAdpt.Fill(mydataset)
+
+            'If objRead.Read() Then
+            '    result = True
+            'End If
+
+            'objRead.Close()
+
+            objConn.Close()
+        Catch ex As Exception
+
+            myerror = ex.ToString
+            myerror += myerror + "444"
+        End Try
+
+        Return mydataset
+
+    End Function
+
+    Protected Sub Repeater1_ItemDataBound(sender As Object, e As System.Web.UI.WebControls.RepeaterItemEventArgs) Handles Repeater1.ItemDataBound
+        If (e.Item.ItemType = ListItemType.Item) Or _
+            (e.Item.ItemType = ListItemType.AlternatingItem) Then
+
+            Dim dr As DataRowView = DirectCast(e.Item.DataItem, DataRowView)
+            Dim status As Integer = Convert.ToInt16(dr("Project_Type_ID"))
+
+            If status = 1 Then
+                CType(e.Item.FindControl("HL_IMG_Project_Give_Success"), HyperLink).NavigateUrl = String.Format(String.Format("~/project_details.aspx?pid={0}", dr("Project_ID")))
+            Else
+                CType(e.Item.FindControl("HL_IMG_Project_Give_Success"), HyperLink).NavigateUrl = String.Format(String.Format("~/business_details.aspx?pid={0}", dr("Project_ID")))
+            End If
+        End If
+
+
+    End Sub
+
+    Protected Sub Repeater2_ItemDataBound(sender As Object, e As System.Web.UI.WebControls.RepeaterItemEventArgs) Handles Repeater2.ItemDataBound
+        If (e.Item.ItemType = ListItemType.Item) Or _
+           (e.Item.ItemType = ListItemType.AlternatingItem) Then
+
+            Dim dr As DataRowView = DirectCast(e.Item.DataItem, DataRowView)
+            Dim status As Integer = Convert.ToInt16(dr("Project_Type_ID"))
+
+            If status = 1 Then
+                CType(e.Item.FindControl("HL_IMG_Staff_Likes"), HyperLink).NavigateUrl = String.Format(String.Format("~/project_details.aspx?pid={0}", dr("Project_ID")))
+            Else
+                CType(e.Item.FindControl("HL_IMG_Staff_Likes"), HyperLink).NavigateUrl = String.Format(String.Format("~/business_details.aspx?pid={0}", dr("Project_ID")))
+            End If
+        End If
+
+    End Sub
+End Class

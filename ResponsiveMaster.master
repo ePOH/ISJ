@@ -1,0 +1,479 @@
+﻿<%@ Master Language="VB" CodeFile="ResponsiveMaster.master.vb" Inherits="ResponsiveMaster" %>
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<!-- Head BEGIN -->
+<head runat="server">
+    <meta charset="utf-8">
+    <title>I Support Jamaica</title>
+
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <meta content="ISupportJamaica" name="description">
+    <meta content="ISupportJamaica" name="keywords">
+    <meta content="keenthemes" name="author">
+
+    <meta property="og:site_name" content="-CUSTOMER VALUE-">
+    <meta property="og:title" content="-CUSTOMER VALUE-">
+    <meta property="og:description" content="-CUSTOMER VALUE-">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="-CUSTOMER VALUE-">
+    <!-- link to image for socio -->
+    <meta property="og:url" content="-CUSTOMER VALUE-">
+
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Fonts START -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
+    <!-- Fonts END -->
+
+    <!-- Global styles START -->
+    <link href="assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/global/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!-- Global styles END -->
+
+    <!-- Page level plugin styles START -->
+    <link href="assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+    <link href="assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="assets/global/plugins/slider-revolution-slider/rs-plugin/css/settings.css" rel="stylesheet">
+    <!-- Page level plugin styles END -->
+
+    <!-- Theme styles START -->
+    <link href="assets/global/css/components.css" rel="stylesheet">
+    <link href="assets/frontend/layout/css/style.css" rel="stylesheet">
+    <link href="assets/frontend/pages/css/style-revolution-slider.css" rel="stylesheet">
+    <!-- metronic revo slider styles -->
+    <link href="assets/frontend/layout/css/style-responsive.css" rel="stylesheet">
+    <link href="assets/frontend/layout/css/custom.css" rel="stylesheet">
+    <!-- Theme styles END -->
+
+    <link href="css/custom.styles.css" rel="stylesheet" />
+    <link href="css/normalize.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/nivo-slider.css" rel="stylesheet" />
+    <link href="css/themes/default/default.css" rel="stylesheet" />
+
+    <link href="js/rhinoslider/css/rhinoslider-1.05.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+        .slogan {
+            color: #207D52;
+            font-weight: 300;
+            font-size: 10px;
+            font-family: Arial;
+            letter-spacing: -1px;
+            margin-left: 9px;
+            margin-top: -18px;
+        }
+
+        li div.search-form {
+            border-left: 1px solid #4d4d4d;
+            padding-left: 20px;
+            padding: 10px 20px 10px 20px;
+        }
+
+        ul#icons {
+            list-style-type: none;
+            overflow: auto;
+        }
+
+        .social-icons-isj ul#icons li {
+            display: inline;
+            margin: 0 2% 0 0;
+        }
+
+        .social-icons-isj {
+            width: 100%;
+            height: 100px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        div.floating-hand {
+            margin-top: -52px;
+            margin-left: 6%;
+            margin-bottom: 38px;
+            z-index: 9999;
+            width: 150px;
+            position: absolute;
+        }
+
+        .footer {
+            background-color: #0071BC;
+            color: #fff;
+            font-size: 12px;
+            min-height: 180px;
+            width: 100%;
+        }
+
+            .footer h3 {
+                color: #ffffff;
+                float: left;
+                /* padding-right: 4%; */
+                font-family: 'BebasNeue';
+                font-size: 72px;
+                line-height: 68px;
+            }
+
+            .footer .sec-div {
+                min-height: 180px;
+                border-right: 3px solid #FFF;
+            }
+
+        .footer-nav span {
+            float: left;
+            padding-right: 18px;
+        }
+
+            .footer-nav span h5 {
+                color: #FFF;
+                font-weight: bold;
+                font-size: 15px;
+            }
+
+        .footer-nav ul {
+            list-style-type: none;
+            padding: 0px;
+        }
+
+            .footer-nav ul li a {
+                color: #FFF;
+                text-decoration: none;
+            }
+
+            .footer-nav ul li {
+                line-height: 18px;
+                font-weight: 300;
+                font-size: 14px;
+            }
+
+            .footer h4:first-child {
+                margin-top: 30px;
+            }
+
+            .footer h4 {
+                color: #FFF;
+                font-family: "BebasNeue";
+                font-size: 38px;
+                text-align: center;
+            }
+
+            .footer div.sep-line {
+                margin: 0px auto;
+                width: 70%;
+                height: 2px;
+                background-color: #FFF;
+            }
+    </style>
+</head>
+<!-- Head END -->
+
+<!-- Body BEGIN -->
+<body class="corporate">
+    <!-- BEGIN HEADER -->
+    <div class="header">
+        <div class="container">
+            <a class="site-logo" href="index.html">
+                <img src="images/isj.png" alt="Metronic FrontEnd">
+                <div class="slogan">
+                    <p>LEND. GIVE. SUPPORT</p>
+                </div>
+            </a>
+
+            <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
+
+            <!-- BEGIN NAVIGATION -->
+            <div class="header-navigation font-transform-inherit" style="margin-top: 25px;">
+                <ul>
+                    <li><a href="how.aspx">How it works</a></li>
+                    <li><a href="contact.aspx" style="margin-top: -5px">Start a project</a></li>
+                    <li><a href="login.aspx">Sign up | Login</a></li>
+                    <li>
+                        <div class="search-form" style="margin-top: 15px">
+                            <form action="searchProjects.aspx">
+                                <div style="border-radius: 15px !important; border-style: solid; border-width: 1px; border-color: #c1c1c1; padding: 3px 5px;">
+                                    <input type="text" name="q" placeholder="Search Projects..." style="border-style: none;" />
+                                </div>
+
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="header-navigation pull-right font-transform-inherit" style="margin-top: 30px;">
+                <ul>
+                    <li>
+                        <a href="news_center.aspx">Blog</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- END NAVIGATION -->
+        </div>
+    </div>
+    <!-- Header END -->
+
+    <!-- BEGIN SLIDER -->
+    <!-- END SLIDER -->
+    <div class="main">
+        <form id="form1" runat="server">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </form>
+    </div>
+    <div class="main" style="background: #efefef;">
+        <div class="container">
+            <div class="social-icons-isj" style="text-align: center;">
+                <ul id="icons">
+                    <li>
+                        <a href="http://www.facebook.com/ISupportJamaica">
+                            <img class="social-icons-icon" src="images/fb-responsive.png" alt="Facebook" title="Like Us On Facebook" style="max-width:64px; min-width:40px;">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.twitter.com/ISupportJamaica">
+                            <img class="social-icons-icon" src="images/twitter-responsive.png" alt="Twitter" title="Follow Us On Twitter" style="max-width:100%; max-height:100%;">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://instagram.com/isupportjamaica">
+                            <img class="social-icons-icon" src="images/ig-responsive.png" alt="InstaGram" style="max-width:100%; max-height:100%;">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img class="social-icons-icon" src="images/google-responsive.png" alt="Google+" title="Circle Us On Google+" style="max-width:100%; max-height:100%;">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.youtube.com/user/isupportjamaica">
+                            <img class="social-icons-icon" src="images/youtube-responsive.png" alt="YouTube" title="Watch Us On YouTube" width="64">
+                        </a>
+                    </li>
+                </ul>
+                <br style="clear: both" />
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="container">
+            <div class="floating-hand">
+                <img src="images/new-hand.png" alt="" />
+            </div>
+        </div>
+    </div>
+    <!-- BEGIN FOOTER -->
+    <div class="footer" style="padding-bottom: 0px; border-bottom: 3px solid rgb(255, 255, 255);">
+        <div class="container" style="margin-top: -15px; ">
+            <div class="row">
+                <div class="col-md-2 sec-div" style="padding-top: 15px;">
+                    <div class="row">
+                        <a href="how.aspx" >
+                            <h3 style="margin-left:20px;">HOW IT
+                                <br>
+                                WORKS</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 sec-div" style="padding-top: 15px;">
+                    <div class="row" style="margin-left: 25px;">
+                        <div class="footer-nav">
+                            <span>
+                                <h5>Help</h5>
+                                <ul>
+                                    <li><a href="about.aspx">About Us</a></li>
+                                    <li><a href="projects.aspx">Projects</a></li>
+                                    <li><a href="contact.aspx">Contact Us</a></li>
+                                    <li><a href="news_center.aspx">Blog</a></li>
+                                    <li><a href="terms_and_conditions.aspx">Terms and<br />
+                                        Conditions</a></li>
+                                </ul>
+                            </span>
+                            <span>
+                                <h5>Follow Us</h5>
+                                <ul>
+                                    <li><a href="http://www.facebook.com/ISupportJamaica">Facebook</a></li>
+                                    <li><a href="https://www.twitter.com/ISupportJamaica">Twitter</a></li>
+                                    <li><a href="http://instagram.com/isupportjamaica">Instagram</a></li>
+                                    <li><a href="http://www.youtube.com/user/isupportjamaica">Youtube</a></li>
+                                    <li><a href="#">Google+</a></li>
+                                </ul>
+                            </span>
+                            <span>
+                                <h5>Explore</h5>
+                                <ul>
+                                    <li><a href="https://www.isupportjamaica.com/project_details.aspx?pid=67">Technology &amp; Energy</a></li>
+                                    <li><a data-toggle="modal" data-target="#myModal">Business</a></li>
+                                    <li><a href="https://www.isupportjamaica.com/project_details.aspx?pid=74">Community</a></li>
+                                    <li><a href="https://www.isupportjamaica.com/project_details.aspx?pid=76">Education</a></li>
+                                </ul>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 sec-div">
+                  <div class="row" style="margin-left:20px;">
+                    <img src="images/paypal-logo2.png" style="margin-top:18px;">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="row">
+                    <a data-toggle="modal" data-target="#myModal" style="text-decoration:none;cursor:pointer;">
+                        <h4>PARTNERS</h4>
+                        <div class="sep-line"></div>
+                        <h4 style="margin-top:10px;">ANGEL INVESTORS</h4>
+                    </a>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="partners">
+        <div class="container">
+          <div class="row">
+            <div class="partner-icons">
+              <ul>
+                <li>
+                  <a href="http://www.jnsbl.com/">
+                    <img src="images/jnsbl_logo.png" alt="JN Small Business" title="JN Small Business Loans" width="78" />
+                  </a>
+                </li>
+                <li style="margin-left:-20px;">
+                  <a href="http://www.jnfoundation.com/content/home-page">
+                    <img src="images/jnf.png" alt="JN Foundation" title="JN Foundation" width="45" />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.jnbslive.com/">
+                    <img src="images/jnLive.png" alt="JN Live" title="JN Live" width="45" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    <!-- END FOOTER -->
+
+    <!-- Load javascripts at bottom, this will reduce page load time -->
+    <!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
+    <!--[if lt IE 9]>
+    <script src="../../assets/global/plugins/respond.min.js"></script>
+    <![endif]-->
+    <script src="assets/global/plugins/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/frontend/layout/scripts/back-to-top.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script src="assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script>
+    <!-- pop up -->
+    <script src="assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js" type="text/javascript"></script>
+    <!-- slider for products -->
+
+    <!-- BEGIN RevolutionSlider -->
+
+    <script src="assets/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.plugins.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js" type="text/javascript"></script>
+    <script src="assets/frontend/pages/scripts/revo-slider-init.js" type="text/javascript"></script>
+    <!-- END RevolutionSlider -->
+
+    <script src="assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
+    <%--<script src="js/jquery.nivo.slider.pack.js" type="text/javascript"></script>--%>
+    <script src="js/rhinoslider/js/rhinoslider-1.05.js"></script>
+    <script src="js/rhinoslider/js/mousewheel.js"></script>
+    <script src="js/rhinoslider/js/easing.js"></script>
+    <script src="js/showPassword/jquery.showpassword.js"></script>
+     <script type="text/javascript">
+         $(window).load(function () {
+             //$('#slider').nivoSlider({
+             //    effect: 'slideInLeft',      // Specify sets
+             //    slices: 15,                   // For slice animations
+             //    boxCols: 8,                  // For box animations
+             //    boxRows: 4,                  // For box animations
+             //    animSpeed: 200,              // Slide transition speed
+             //    pauseTime: 3000,             // How long each slide will show
+             //    startSlide: 0,               // Set starting Slide (0 index)
+             //    directionNav: true,          // Next & Prev navigation
+             //    controlNav: false,           // 1,2,3... navigation
+             //    controlNavThumbs: false,     // Use thumbnails for Control Nav
+             //    pauseOnHover: true,          // Stop animation while hovering
+             //    manualAdvance: false,        // Force manual transitions
+             //    prevText: 'Prev',            // Prev directionNav text
+             //    nextText: 'Next',            // Next directionNav text
+             //    randomStart: false,          // Start on a random slide
+             //});
+
+             $("#slider-container").height($("#Image1").height());
+             $("#slider-container").css("overflow", "hidden");
+
+             $(".banner-rotators").each(function () {
+                 $('#slider').append("<li>" + $(this).html() + "</li>");
+             });
+
+             $(".BannerImage").each(function () {
+                 $(this).width($(this).width() + 10);
+             });
+
+             $('#slider').rhinoslider({
+                 controlsPlayPause: false,
+                 autoPlay: true,
+                 pauseOnHover: false,
+                 showBullets: 'never',
+                 slideNextDirection: 'toLeft'
+             });
+
+
+             $(".register-button").on({
+                 "mouseover": function () {
+                     this.src = 'images/register_now_yellow.jpg';
+                 },
+                 "mouseout": function () {
+                     this.src = 'images/register_now_green.jpg';
+                 },
+                 "mousedown": function () {
+                     $(this).css("margin-left", "5px");
+                     $(this).css("margin-top", "5px");
+                 },
+                 "mouseup": function () {
+                     $(this).css("margin-left", "0px");
+                     $(this).css("margin-top", "0px");
+                 }
+             });
+
+             $(".social-icons-icon").on({
+                 "mousedown": function () {
+                     $(this).css("width", "59px");
+                     $(this).css("margin-left", "5px");
+                     $(this).css("margin-top", "5px");
+                 },
+                 "mouseup": function () {
+                     $(this).css("width", "64px");
+                     $(this).css("margin-left", "0px");
+                     $(this).css("margin-top", "0px");
+                 }
+             });
+
+             $(window).resize(function () {
+                 if ($(document).width() < 500) {
+                     $(".social-icons-icon").width(40);
+                 } else {
+                     $(".social-icons-icon").width(64);
+                 }
+             });
+         });
+     </script>
+    <!-- END PAGE LEVEL JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

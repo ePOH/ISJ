@@ -1,0 +1,222 @@
+﻿<%@ Page Title="Home | I Support Jamaica" Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="Default.aspx.vb" Inherits="_Default" %>
+
+<%@ Register src="_controls/SoonLend.ascx" tagname="SoonLend" tagprefix="uc1" %>
+
+<%@ Register src="_controls/popupLend.ascx" tagname="popupLend" tagprefix="uc2" %>
+
+<%@ Register src="_controls/Logotop.ascx" tagname="Logotop" tagprefix="uc3" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+
+
+    <style type="text/css">
+        .auto-style1
+        {
+            font-size: 64px;
+        }
+    </style>
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+	<asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+		
+     <section class="callouts">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5">
+              <a href="https://www.youtube.com/watch?v=IasPjY0JQ2c" target="_blank">
+                  <img src="images/inspire.png" alt="" width="341" height="222" />
+              </a>
+            </div>
+            <div class="col-md-7">
+              <div class="callout-text">
+                <p>
+                  ISupportJamaica.com is the leading crowd funding site in<br/>
+				  Jamaica. Our social mission focuses on the promotion of<br/>
+				  community empowerment, technology, innovation and<br/>
+				  entrepreneurial ambitions among Jamaicans and<br/>
+				  Jamaican interests.
+                </p>
+              </div>
+             <div class="callout-icons">
+                <a data-toggle="modal" data-target="#myModal">
+                    <img src="images/u3416.png" onmouseover="this.src='images/u3416-r.png'" onmouseout="this.src='images/u3416.png'" alt="" id="investors">
+                </a>
+
+                <span style="position: absolute; margin-top: 55px ! important; margin-right: 10px ! important;" class="plus">+</span>
+                
+                <a data-toggle="modal" data-target="#myModal">
+                    <img style="margin-left: 15px;" src="images/u3405.png" onmouseover="this.src='images/u3405-r.png'" onmouseout="this.src='images/u3405.png'" alt="" id="ideas">
+                </a>
+
+                <span style="position: absolute; margin-top: 55px ! important; margin-right: 10px ! important;" class="equal">=</span>
+
+                 <a data-toggle="modal" data-target="#myModal">
+                     <img style="margin-left: 36px;" src="images/u3411.png" onmouseover="this.src='images/u3411-r.png'" onmouseout="this.src='images/u3411.png'" alt="" id="business">
+                 </a>
+              </div>
+            </div>
+          </div>
+        </div>
+     </section>
+
+     <section class="yellow-bar"></section>
+
+    <section class="projects">
+        <div class="container" style="text-align:center;">
+			<div class="row">
+				<div class="staff-likes">
+					<h3 class="page-header">Staff Likes</h3>
+					<div class="col-md-8">
+                        <asp:Repeater ID="Repeater2" runat="server" DataSourceID="SqlDataSourceStaffLikeoftheweek">
+                            <ItemTemplate>
+                            <h3><asp:Label ID="lblstaffLikes" runat="server" Text='<%# eval("Project_Name") %>' ></asp:Label></h3>
+					            <asp:HyperLink ID="HL_IMG_Staff_Likes" runat="server"   >
+                                   <asp:Image ID="IMG_Project1"  class="img-thumbnail" runat="server"  title='<%# eval("Project_Name") %>'   AlternateText='<%# eval("Project_Name") %>'  ImageUrl='<%# eval("Project_Image") %>' style="width:340px" />
+                                   <asp:Image ID="IMG_Project2"  class="img-thumbnail" runat="server"  title='<%# eval("Project_Name") %>'   AlternateText='<%# eval("Project_Name") %>' ImageUrl='<%# eval("Project_Image1") %>' style="width:300px" />						  					   
+                               </asp:HyperLink>
+                            </ItemTemplate>
+                        </asp:Repeater>
+						
+					   
+					    <asp:SqlDataSource ID="SqlDataSourceStaffLikeoftheweek" runat="server" 
+                            ConnectionString="<%$ ConnectionStrings:ConnISJ %>" 
+                            SelectCommand="SELECT top 1 PDF.[Project_ID], [date], Project_Name,Project_Image,Project_Image1,PDF.Project_Type AS Project_Type_ID FROM dbo.Project_Data_File PDF inner join [Project_StaffLikes] PSL on PDF.Project_ID= PSL.[Project_ID]order by [date] desc">
+                        </asp:SqlDataSource>
+						
+					   
+					  <p style="float:right;top:0;">
+						  <a href="projects.aspx">See all...</a>
+					  </p>
+					</div>
+					
+					<div class="col-md-4">
+						<aside class="small-nav" style="padding-top: 5%;">
+							<h3 style="margin-left: 38px;margin-top: -22px;">Explore</h3>
+							<ul>
+							  <li><a href="projects.aspx">Technology &amp; Energy</a></li>
+							  <li><a data-toggle="modal" data-target="#myModal">Business</a></li>
+							  <li><a href="projects.aspx">Community</a></li>
+							  <li><a href="projects.aspx">Education</a></li>
+							  <li><a href="projects.aspx">Culture (Sports, Music &amp; Arts)</a></li>
+							  <li><a href="projects.aspx">Tourism</a></li>
+							  <li><a href="projects.aspx"><img src="images/buttons/givenow.jpg" alt="Give Now" style="padding-top: 5px;"></a></li>
+							</ul>
+						</aside>
+					</div>
+				</div>
+				<hr />
+			</div>
+			
+          <div class="row">
+            <div class="popular-projects">
+              <h3 class="page-header">Popular Projects</h3>
+              <div class="row">
+              <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SQL_DS_Projects">
+                            <ItemTemplate>
+                   <div class="col-md-3">
+                      <div class="row">
+
+                      <asp:HyperLink ID="HL_IMG_Project_Give_Success" runat="server"   >
+                
+                        <asp:Image ID="IMG_Project_Give_Success" runat="server"  class="img-thumbnail"  AlternateText="Project Image" ImageUrl='<%# eval("Project_Image") %>' style="width: 250px;height:145px;" />
+                          <asp:SlideShowExtender ID="SlideShowExtender1" runat="server" TargetControlID="IMG_Project_Give_Success"
+                          SlideShowServiceMethod="GetSlides" AutoPlay="true" Loop="true"  UseContextKey='true' >
+                        </asp:SlideShowExtender>
+                      </asp:HyperLink>
+                      &nbsp;</div>
+                      <div class="row">
+                        <div class="thumbnail-text">
+                         
+                          <h3><asp:Label ID="lb_business_name_success" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Project_Short_Name") %>'></asp:Label></h3>
+                           <p><asp:Label ID="lb_project_about" runat="server" Text= '<%# DataBinder.Eval(Container.DataItem, "Project_About") %>'> ></asp:Label> 
+                          </p>
+                        </div>
+                      </div>
+                </div>
+                            </ItemTemplate>
+                </asp:Repeater>
+              <%--  <div class="col-md-3">
+                  <div class="row">
+                    <a href="https://www.isupportjamaica.com/project_details.aspx?pid=87">
+                        <img class="img-thumbnail" src="images/projects/87.jpg" alt="" style="width: 250px;height:145px;">
+                    </a>
+                  </div>
+                  <div class="row">
+                    <div class="thumbnail-text">
+                      <h3>Fresh Cups</h3>
+                      <p>
+                        We feel that the perception of 100% Jamaica Blue Mountain coffee as being an  "elitist's"  drink and one reserved primarily for cafe goers has led to its lack of acceptance and reduced consumption locally.<br/>
+						"FRESH CUPS" is here to change that perception and in effect bring the coffee to the people.<br/>
+						Fresh cups, makes readily available, brewed 100% Jamaica Blue Mountain Coffee via our mobile pop-up kiosks which are transferable to any location and is fully operational within 10 minutes of setup.
+                      </p>
+                    </div>
+                  </div>
+                </div>--%>
+               <%-- <div class="col-md-3">
+                  <div class="row">
+                    <a href="https://www.isupportjamaica.com/project_details.aspx?pid=86">
+                        <img class="img-thumbnail" src="images/projects/86.jpg" alt="" style="width: 250px;height:145px;">
+                    </a>
+                  </div>
+                  <div class="row">
+                    <div class="thumbnail-text">
+                      <h3>Scholarships for Jamaica</h3>
+                      <p>
+                        The mission of “Scholarships for Jamaica” is to help thousands of prospective college students realize their dream of pursuing tertiary education at the University College of the Caribbean (UCC) and other approved tertiary institutions, by helping them secure a full scholarship. While UCC and the Kiwanis movement will spearhead this initiative, prospective students seeking to attend other approved institutions therefore will also benefit from this novel initiative.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="row">
+                    <a href="https://www.isupportjamaica.com/project_details.aspx?pid=83">
+                        <img class="img-thumbnail" src="images/projects/83.jpg" alt="" style="width: 250px;height:145px;">
+                    </a>
+                  </div>
+                  <div class="row">
+                    <div class="thumbnail-text">
+                      <h3>The Queen's School Auditorium Fund</h3>
+                      <p>
+                        An enclosed and secure auditorium is essential to help build a greater sense of community within the school and to also serve the wider community.  Students’ purpose-filled talent for performing arts could be realized, ie chorale, drama performances and other theatrical activities.  Prize-giving exercises could be held with the inclusion of the entire school population and guests, instead of just awardees and selected guests.  Devotion could be enjoyed in an enclosed area that is not susceptible to weathering - harsh sun rays and rainfall.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="row">
+                    <a href="https://www.isupportjamaica.com/project_details.aspx?pid=88">
+                        <img class="img-thumbnail" src="images/projects/88.jpg" alt="" style="width: 250px;height:145px;">
+                    </a>
+                  </div>
+                  <div class="row">
+                    <div class="thumbnail-text">
+                      <h3>Smart Farm</h3>
+                      <p>
+                        The Jamaican Farming industry has enormous potential but, has failed to achieve this because of different problems such as praedial larceny and the irregularity of weather patterns. But some farmers have now turned to Greenhouse cultivation as the new way forward in farming, but still face challenges with this new system. But here the Smart farm comes as the solution as it is an electronic monitoring system that ensures the security of the greenhouse and also it ensures that the best possible conditions are maintained to maximize the growth and optimum production of crops in a greenhouse.
+                      </p>
+                    </div>
+                  </div>
+                </div>--%>
+              </div>
+						<div class="row">
+						<p class="action-text">
+							Explore great projects and share with your friends 					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<asp:SqlDataSource ID="SQL_DS_Projects" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:ConnISJ %>" 
+        SelectCommand="SELECT Project_Featured_Data_File.Project_ID, Project_Data_File.Project_Name,Project_Data_File.Project_About, Project_Featured_Data_File.Project_Type AS Project_Type_ID, Project_Type_Master_File.Project_Type, Project_Data_File.Project_Short_Name, Project_Data_File.Project_Synopsys, Project_Data_File.Project_Needs, Project_Data_File.Project_Image, Project_Data_File.Project_Status FROM Project_Data_File INNER JOIN Project_Featured_Data_File ON Project_Data_File.Project_ID = Project_Featured_Data_File.Project_ID INNER JOIN Project_Type_Master_File ON Project_Featured_Data_File.Project_Type = Project_Type_Master_File.Project_Type_ID ">
+    </asp:SqlDataSource>
+
+	<%--<asp:SqlDataSource ID="SQL_DS_Projects" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:ConnISJ %>" 
+        SelectCommand="SELECT Project_Data_File.Project_ID, Project_Data_File.Project_Type, Project_Data_File.Project_Short_Name,Project_Data_File.Project_About, Project_Data_File.Project_Synopsys, Project_Data_File.Project_Needs, Project_Data_File.Project_Image, Project_Data_File.Project_Status FROM Project_Data_File INNER JOIN Home_Page_Data_File ON Project_Data_File.Project_ID = Home_Page_Data_File.Project_ID ORDER BY Project_Data_File.Project_Type, Project_Data_File.Project_Status">
+    </asp:SqlDataSource>--%>
+
+</asp:Content>

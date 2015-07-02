@@ -1,0 +1,133 @@
+﻿
+Partial Class admin_modify_home_page
+    Inherits System.Web.UI.Page
+
+    Protected Sub btn_Modify_Click(sender As Object, e As System.EventArgs) Handles btn_Modify.Click
+
+        Dim strConn1 As String = ConfigurationManager.ConnectionStrings("ConnISJ").ConnectionString
+        Dim objConn2 As New Data.SqlClient.SqlConnection(strConn1)
+        Dim strSQL2 As String = "DELETE FROM Home_Page_Data_File"
+        objConn2.Open()
+        Dim objComm2 As New Data.SqlClient.SqlCommand(strSQL2, objConn2)
+        objComm2.ExecuteNonQuery()
+        objComm2.Connection.Close()
+        objConn2.Close()
+
+        Dim strConn As String = ConfigurationManager.ConnectionStrings("ConnISJ").ConnectionString
+        Dim objConn1 As New Data.SqlClient.SqlConnection(strConn)
+        Dim strSQL1 As String = "INSERT INTO Home_Page_Data_File (Project_ID) VALUES (" & DDL_PGS.SelectedValue & "), (" & DDL_PGA.SelectedValue & "), (" & DDL_BLS.SelectedValue & "), (" & DDL_BLA.SelectedValue & ")"
+        objConn1.Open()
+        Dim objComm1 As New Data.SqlClient.SqlCommand(strSQL1, objConn1)
+        objComm1.ExecuteNonQuery()
+        objComm1.Connection.Close()
+        objConn1.Close()
+
+        Session("msg_admin") = "Home Page Updated Successfully!"
+        Response.Redirect("admin.aspx", True)
+
+    End Sub
+
+    Protected Sub Page_Load(sender As Object, e As System.EventArgs) Handles Me.Load
+
+        If Session("login") <> "true" Then
+            Response.Redirect("admin_login.aspx", True)
+        End If
+
+    End Sub
+
+    Protected Sub Page_LoadComplete(sender As Object, e As System.EventArgs) Handles Me.LoadComplete
+
+        'Dim dv As New Data.DataView
+        'Dim yy As Integer
+        'Dim lI As ListItem
+        'Dim pp As String
+        'dv = SQL_DS_Projects.Select(DataSourceSelectArguments.Empty)
+        'yy = DDL_PGS.Items.Count
+        ' ''   pp = DDL_PGS.Items.Item(0).Text
+        'If Not IsNothing(DDL_PGS.Items.FindByValue(dv.Table.Rows(1)("Project_ID"))) Then
+        '    DDL_PGS.SelectedValue = dv.Table.Rows(1)("Project_ID")
+        'End If
+        'If DDL_PGS.Items.FindByValue(dv.Table.Rows(1)("Project_ID")) IsNot Nothing Then
+        '    yy = dv.Table.Rows(1)("Project_ID")
+        '    DDL_PGS.SelectedValue = dv.Table.Rows(1)("Project_ID")
+        'Else
+        '    lI = DDL_PGS.Items.FindByValue(dv.Table.Rows(1)("Project_ID"))
+        'End If
+
+        'If Not IsNothing(DDL_PGA.Items.FindByValue(dv.Table.Rows(0)("Project_ID"))) Then
+        '    DDL_PGA.SelectedValue = dv.Table.Rows(0)("Project_ID")
+        'End If
+        'If DDL_PGA.Items.FindByValue(dv.Table.Rows(0)("Project_ID")) IsNot Nothing Then
+        '    DDL_PGA.SelectedValue = dv.Table.Rows(0)("Project_ID")
+        'End If
+
+        'If DDL_BLS.Items.FindByValue(dv.Table.Rows(3)("Project_ID")) IsNot Nothing Then
+        '    ''  DDL_BLS.SelectedValue = dv.Table.Rows(3)("Project_ID")
+        'End If
+
+        'If DDL_BLA.Items.FindByValue(dv.Table.Rows(2)("Project_ID")) IsNot Nothing Then
+        '    DDL_BLA.SelectedValue = dv.Table.Rows(2)("Project_ID")
+        'End If
+
+
+    End Sub
+
+    Protected Sub DDL_PGS_DataBound(sender As Object, e As System.EventArgs) Handles DDL_PGS.DataBound
+        Dim dv As New Data.DataView
+        dv = SQL_DS_Projects.Select(DataSourceSelectArguments.Empty)
+        Dim tt As Integer
+        tt = dv.Count
+        If dv.Count <> 0 AndAlso DDL_PGS.Items.FindByValue(dv.Table.Rows(1)("Project_ID")) IsNot Nothing Then
+            DDL_PGS.SelectedValue = dv.Table.Rows(1)("Project_ID")
+        End If
+
+    End Sub
+
+    Protected Sub DDL_PGA_DataBound(sender As Object, e As System.EventArgs) Handles DDL_PGA.DataBound
+        Dim dv As New Data.DataView
+        dv = SQL_DS_Projects.Select(DataSourceSelectArguments.Empty)
+        Dim tt As Integer
+        tt = dv.Count
+        If dv.Count <> 0 AndAlso DDL_PGA.Items.FindByValue(dv.Table.Rows(0)("Project_ID")) IsNot Nothing Then
+            DDL_PGA.SelectedValue = dv.Table.Rows(0)("Project_ID")
+        End If
+    End Sub
+
+    Protected Sub DDL_BLS_DataBound(sender As Object, e As System.EventArgs) Handles DDL_BLS.DataBound
+        Dim dv As New Data.DataView
+        dv = SQL_DS_Projects.Select(DataSourceSelectArguments.Empty)
+        If dv.Count <> 0 AndAlso DDL_BLS.Items.FindByValue(dv.Table.Rows(3)("Project_ID")) IsNot Nothing Then
+            DDL_BLS.SelectedValue = dv.Table.Rows(3)("Project_ID")
+        End If
+    End Sub
+
+    Protected Sub DDL_BLA_DataBound(sender As Object, e As System.EventArgs) Handles DDL_BLA.DataBound
+        Dim dv As New Data.DataView
+        dv = SQL_DS_Projects.Select(DataSourceSelectArguments.Empty)
+        If dv.Count <> 0 AndAlso DDL_BLA.Items.FindByValue(dv.Table.Rows(2)("Project_ID")) IsNot Nothing Then
+            DDL_BLA.SelectedValue = dv.Table.Rows(2)("Project_ID")
+        End If
+    End Sub
+
+    Protected Sub btnStaffLikes_Click(sender As Object, e As System.EventArgs) Handles btnStaffLikes.Click
+        Dim strConn1 As String = ConfigurationManager.ConnectionStrings("ConnISJ").ConnectionString
+        
+        Dim paramProject_ID As Data.SqlClient.SqlParameter
+        paramProject_ID = New Data.SqlClient.SqlParameter("@Project_ID", Data.SqlDbType.Int)
+        paramProject_ID.Value = ddlStaffLikes.SelectedValue
+
+
+        Dim strConn As String = ConfigurationManager.ConnectionStrings("ConnISJ").ConnectionString
+        Dim objConn1 As New Data.SqlClient.SqlConnection(strConn)
+        Dim strSQL1 As String = "INSERT INTO Project_StaffLikes (Project_ID) VALUES (@Project_ID)"
+        objConn1.Open()
+        Dim objComm1 As New Data.SqlClient.SqlCommand(strSQL1, objConn1)
+        objComm1.Parameters.Add(paramProject_ID)
+        objComm1.ExecuteNonQuery()
+        objComm1.Connection.Close()
+        objConn1.Close()
+
+        Session("msg_admin") = "Home Page Staff Likes Updated Successfully!"
+        Response.Redirect("admin.aspx", True)
+    End Sub
+End Class
