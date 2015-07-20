@@ -90,11 +90,24 @@
                         <td class="style4tb">
                             New Password:</td>
                             <td class="style2tb">
+                                <asp:RegularExpressionValidator ID="Val_Reg_yourPassword" runat="server" ControlToValidate="tb_npassword1"
+                                  Display="Dynamic" ErrorMessage="Password has not met security requirements!"
+                                  ValidationExpression="^(?=.*[a-zA-Z].*[a-zA-Z].*[a-zA-Z].*[a-zA-Z].*[a-zA-Z])(?=.*\d.*\d.*\d)[a-zA-Z0-9]{8,20}$"
+                                  ForeColor="Red" Text="*"></asp:RegularExpressionValidator>
                                 <asp:RequiredFieldValidator ID="Val_Req_NPassword1" runat="server" 
-                        ErrorMessage="New Password is Required!" ControlToValidate="tb_npassword1" 
-                                    Display="Dynamic" Text="*" ForeColor="Red"></asp:RequiredFieldValidator></td>
+                                    ErrorMessage="New Password is Required!" ControlToValidate="tb_npassword1" 
+                                    Display="Dynamic" Text="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                            </td>
                         <td class="style5tb">
                             <asp:TextBox ID="tb_npassword1" runat="server" TextMode="Password"></asp:TextBox>
+                            <asp:BalloonPopupExtender ID="yourPassword_BalloonPopupExtender" runat="server"
+                                  BalloonPopupControlID="Panel1" CustomCssUrl=""
+                                  DynamicServicePath="" Enabled="True" ExtenderControlID=""
+                                  Position="BottomRight" TargetControlID="tb_npassword1">
+                              </asp:BalloonPopupExtender>
+                              <asp:Panel ID="Panel1" runat="server" CssClass="pup">
+                                  Passwords must have a minimum of eight characters including at least 5 letters and at least 3 numbers.
+                              </asp:Panel>
                             <asp:TextBoxWatermarkExtender ID="login_npassword1_TextBoxWatermarkExtender" 
                                 runat="server" Enabled="True" TargetControlID="tb_npassword1" 
                                 WatermarkText="********">

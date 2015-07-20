@@ -67,7 +67,7 @@
                             <td class="style2tb">
                                 <asp:RegularExpressionValidator ID="Val_Reg_NPassword1" runat="server" ControlToValidate="tb_npassword1"
                             Display="Dynamic" ErrorMessage="Password has not met security requirements!" 
-                                    ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,24}$" 
+                                    ValidationExpression="^(?=.*[a-zA-Z].*[a-zA-Z].*[a-zA-Z].*[a-zA-Z].*[a-zA-Z])(?=.*\d.*\d.*\d)[a-zA-Z0-9]{8,20}$" 
                                     ForeColor="Red" Text="*"></asp:RegularExpressionValidator>
                                 <asp:RequiredFieldValidator ID="Val_Req_NPassword1" runat="server" 
                         ErrorMessage="New Password is Required!" ControlToValidate="tb_npassword1" 

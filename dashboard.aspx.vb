@@ -39,6 +39,13 @@
             lb_bio.Text = "To edit your profile, click on the <a href='manage_profile.aspx'>MANAGE PROFILE</a> link."
             'lb_bio.Text = "To edit your profile, click on the MANAGE PROFILE link."
         End If
+        If Not Session("msg_donor") Is Nothing Then
+            lab_msg_donor.Text = Session("msg_donor")
+            Session("msg_donor") = Nothing
+            pnlAlert.Visible = True
+        Else
+            pnlAlert.Visible = False
+        End If
 
         If Not IsDBNull(Session("d_fid")) Then
             hl_manage_profile.Visible = True

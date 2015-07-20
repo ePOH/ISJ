@@ -76,7 +76,7 @@ Partial Class activate_account
                     Session("d_login_fname") = objRead.Item("Donor_First_Name")
                     Session("d_login_lname") = objRead.Item("Donor_Last_Name")
                     Session("d_login_email") = objRead.Item("Donor_Email")
-                    Session("d_login_password") = "" 'objRead.Item("Donor_Password")
+                    Session("d_login_password") = objRead.Item("Donor_Password")
                     Session("d_login_bio") = objRead.Item("Donor_FB_Bio")
                     Session("d_picture") = objRead.Item("Donor_FB_Photo")
                     objRead.Close()

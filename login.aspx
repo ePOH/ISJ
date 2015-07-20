@@ -351,7 +351,7 @@
                       <!--Passwords must have a minimum of eight characters including at least one uppercase letter and at least one digit.-->
                       <asp:RegularExpressionValidator ID="Val_Reg_yourPassword" runat="server" ControlToValidate="yourPassword"
                           Display="Dynamic" ErrorMessage="Password has not met security requirements!"
-                          ValidationExpression="^(?=.*[a-z].*[a-z].*[a-z].*[a-z].*[a-z].*)(?=.*\d.*\d.*\d.*)[a-z0-9]{8,}$"
+                          ValidationExpression="^(?=.*[a-zA-Z].*[a-zA-Z].*[a-zA-Z].*[a-zA-Z].*[a-zA-Z])(?=.*\d.*\d.*\d)[a-zA-Z0-9]{8,20}$"
                           ForeColor="Red" Text="*" ValidationGroup="create_account"></asp:RegularExpressionValidator>
                       <asp:RequiredFieldValidator ID="Val_Req_yourPassword" runat="server"
                           ErrorMessage="Password has not been entered!" ValidationGroup="create_account"
